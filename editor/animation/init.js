@@ -40,12 +40,18 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             }
 
             //YOUR FUNCTION NAME
-            var fname = 'checkio';
+            var fname = 'divide_pie';
+
+            if (data.ext && data.ext["show"]) {
+                var checkioInputStr = fname + "(" + data.ext["show"] + ")";
+            }
+            else {
+                checkioInputStr = fname + '((2, -1, 3))';
+            }
 
             var checkioInput = data.in;
-            var checkioInputStr = fname + '(' + JSON.stringify(checkioInput)  + ')';
 
-            var failError = function(dError) {
+            var failError = function (dError) {
                 $content.find('.call').html('Fail: ' + checkioInputStr);
                 $content.find('.output').html(dError.replace(/\n/g, ","));
 
@@ -69,13 +75,13 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             var rightResult = data.ext["answer"];
             var userResult = data.out;
             var result = data.ext["result"];
-            var result_addon = data.ext["result_addon"];
+            var userResultShow = data.ext["result_addon"];
 
 
             //if you need additional info from tests (if exists)
             var explanation = data.ext["explanation"];
 
-            $content.find('.output').html('&nbsp;Your result:&nbsp;' + JSON.stringify(userResult));
+            $content.find('.output').html('&nbsp;Your result:&nbsp;' + userResultShow);
 
             if (!result) {
                 $content.find('.call').html('Fail: ' + checkioInputStr);
@@ -89,13 +95,11 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
                 $content.find('.answer').remove();
             }
 
-            //Your code here about test explanation animation
-            //$content.find(".explanation").html("Something text for example");
-            //
-            //
-            //
-            //
-            //
+            if (explanation) {
+                var canvas = new Canvas($content.find(".explanation")[0]);
+                canvas.draw();
+                canvas.animate(explanation);
+            }
 
 
             this_e.setAnimationHeight($content.height() + 60);
@@ -115,23 +119,80 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
 //                this_e.sendToConsoleCheckiO("something");
 //            });
 //        });
+        function Canvas(dom) {
 
-        var colorOrange4 = "#F0801A";
-        var colorOrange3 = "#FA8F00";
-        var colorOrange2 = "#FAA600";
-        var colorOrange1 = "#FABA00";
 
-        var colorBlue4 = "#294270";
-        var colorBlue3 = "#006CA9";
-        var colorBlue2 = "#65A1CF";
-        var colorBlue1 = "#8FC7ED";
+            var colorOrange4 = "#F0801A";
+            var colorOrange3 = "#FA8F00";
+            var colorOrange2 = "#FAA600";
+            var colorOrange1 = "#FABA00";
 
-        var colorGrey4 = "#737370";
-        var colorGrey3 = "#9D9E9E";
-        var colorGrey2 = "#C5C6C6";
-        var colorGrey1 = "#EBEDED";
+            var colorBlue4 = "#294270";
+            var colorBlue3 = "#006CA9";
+            var colorBlue2 = "#65A1CF";
+            var colorBlue1 = "#8FC7ED";
 
-        var colorWhite = "#FFFFFF";
+            var colorGrey4 = "#737370";
+            var colorGrey3 = "#9D9E9E";
+            var colorGrey2 = "#C5C6C6";
+            var colorGrey1 = "#EBEDED";
+
+            var colorWhite = "#FFFFFF";
+
+            var padding = 10;
+
+            var R = 150;
+
+            var size = padding * 2 + R * 2;
+
+            var center = size / 2
+
+            var paper = Raphael(dom, size, size);
+
+            var arc;
+
+            var attrShadow = {"stroke": colorBlue2, "fill": colorGrey1, "stroke-width": 3};
+            var attrPie = {"stroke": colorBlue4, "fill": colorBlue1, "stroke-width": 3};
+
+            this.draw = function () {
+                paper.circle(size / 2, size / 2, R).attr(attrShadow);
+                arc = paper.path(Raphael.format(
+                    "M{0},{0}L{0},{1}A{2},{2},{3},{4},1,{5},{6}Z",
+                    center,
+                    padding,
+                    R,
+                    Math.PI,
+                    1,
+                    center,
+                    padding)).attr(attrPie);
+
+            };
+
+            this.animate = function (parts) {
+                var i = 0;
+                var stepTime = 500;
+                var delayTime = 300;
+                (function cut() {
+                    i++;
+                    if (i >= parts.length) return False;
+                    setTimeout(function () {
+                        var p = parts[i];
+                        var angle = 2 * Math.PI * p[0] / p[1];
+                        arc.animate({"path": Raphael.format(
+                            "M{0},{0}L{0},{1}A{2},{2},{3},{4},1,{5},{6}Z",
+                            center,
+                            padding,
+                            R,
+                            Math.PI,
+                            1,
+                            center + Math.cos(angle) * R,
+                            center + Math.sin(angle) * R)}, stepTime, callback = cut);
+                    }, delayTime);
+                })();
+
+            }
+        }
+
         //Your Additional functions or objects inside scope
         //
         //
