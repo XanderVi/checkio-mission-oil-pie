@@ -97,8 +97,8 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
 
             if (explanation) {
                 var canvas = new Canvas($content.find(".explanation")[0]);
-                canvas.draw();
-                canvas.animate(explanation);
+                canvas.draw(explanation);
+//                canvas.animate(explanation);
             }
 
 
@@ -145,58 +145,57 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
 
             var size = padding * 2 + R * 2;
 
-            var center = size / 2
+            var center = size / 2;
 
             var paper = Raphael(dom, size, size);
 
             var arc;
 
-            var attrShadow = {"stroke": colorBlue2, "fill": colorGrey1, "stroke-width": 3};
-            var attrPie = {"stroke": colorBlue4, "fill": colorBlue1, "stroke-width": 3};
+            var attrShadow = {"stroke": colorBlue4, "fill": colorBlue1, "stroke-width": 3};
+            var attrLine = {"stroke": colorBlue4, "stroke-width": 2};
+            var attrRem = {"stroke": colorBlue4, "stroke-width": 3, "fill": colorOrange1};
 
-            this.draw = function () {
+            this.draw = function (parts) {
                 paper.circle(size / 2, size / 2, R).attr(attrShadow);
-                arc = paper.path(Raphael.format(
-                    "M{0},{0}L{0},{1}A{2},{2},{3},{4},1,{5},{6}Z",
-                    center,
-                    padding,
-                    R,
-                    Math.PI,
-                    1,
-                    center,
-                    padding)).attr(attrPie);
+                for (var i = 0; i < parts.length; i++) {
+                    var p = parts[i];
+                    var angle = 2 * Math.PI * p[0] / p[1];
+                    paper.path([
+                        ["M", center, center],
+                        ["L", center + Math.sin(angle) * R, center - Math.cos(angle) * R]
+                    ]).attr(attrLine);
+                }
+                paper.path([
+                    ["M", center, center],
+                    ["L", center, padding],
+                    ["A", R, R, 0, angle > Math.PI ? 1 : 0, 1, center + Math.sin(angle) * R, center - Math.cos(angle) * R],
+                    ["z"]
+                ]).attr(attrRem);
 
             };
 
-            this.animate = function (parts) {
-                var i = 0;
-                var stepTime = 500;
-                var delayTime = 300;
-                (function cut() {
-                    i++;
-                    if (i >= parts.length) return False;
-                    setTimeout(function () {
-                        var p = parts[i];
-                        var angle = 2 * Math.PI * p[0] / p[1];
-                        arc.animate({"path": Raphael.format(
-                            "M{0},{0}L{0},{1}A{2},{2},{3},{4},1,{5},{6}Z",
-                            center,
-                            padding,
-                            R,
-                            Math.PI,
-                            1,
-                            center + Math.cos(angle) * R,
-                            center + Math.sin(angle) * R)}, stepTime, callback = cut);
-                    }, delayTime);
-                })();
-
-            }
+//            this.animate = function (parts) {
+//                var i = 0;
+//                var stepTime = 1000;
+//                var delayTime = 300;
+//                (function cut() {
+//                    i++;
+//                    if (i >= parts.length) return false;
+//                    setTimeout(function () {
+//                        var p = parts[i];
+//                        var angle = 2 * Math.PI * p[0] / p[1];
+//                        console.log(p, angle);
+//                        console.log(arc.attr("path"));
+//                        arc.animate({"path": [
+//                            ["M", center, center],
+//                            ["L", center - 1, padding],
+//                            ["A", R, R, 0, angle > Math.PI ? 1 : 0, 1, center + Math.sin(angle) * R, center - Math.cos(angle) * R],
+//                            ["z"]
+//                        ]}, stepTime, callback = cut);
+//                    }, delayTime);
+//                })();
+//            }
         }
-
-        //Your Additional functions or objects inside scope
-        //
-        //
-        //
 
 
     }
