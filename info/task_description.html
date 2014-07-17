@@ -1,44 +1,69 @@
 <p>
-    <i>( Describe task in general )</i>
+    Sophia had cooked a pie with oil for her drones and left it in the kitchen.
+    Drones were returning home in small groups or by one and were not seeing each other.
+    Each group did not know how many drones had eaten their parts.
+    Some groups know about the full size of pie take their part from the whole pie,
+    but some groups don't know this and think about the remaining part as about the whole pie,
+    they take their part from the remaining.
+    So each group had divided (mentally) the remaining or initial pie at all and took their part.
+    How much part will be remained after all drones?
+</p>
+<p>
+    For example. There are 6 drones. The first group is 2 drones. They had divided the pie to 6 parts and took 2/6 of
+    the pie.
+    The remaining pie is 2/3 from the entire pie.
+    Then returned one drone, it don't know about the real pie size.
+    It had divided the remaining at 6 and took 1 part, so the remaining is 10/18=5/9.
+    And the last group is 3 drones, they know about pie.
+    They took a half of the whole pie, so the remaining is 5/9&nbsp;-&nbsp;3/6&nbsp;=1/18
 </p>
 
 <p>
-    Sum two passed ints
+    You are given an ordered array with sizes of groups which arrived.
+    If a group knows about the initial pie size, then the size is positive. If not, then size will be negative.
+    The recent example will given as (2,&nbsp;-1,&nbsp;3).
 </p>
 
 <p style="text-align: center;">
-    <img class="for_info_only" title="example" src="{{MEDIA}}example.png" alt="example" width="392px"/>
-    <img class="for_editor_only" title="example" src="{{MEDIA}}example.png" alt="example" width="380px"/>
-</p>
-
-<p><i>( Explain input and output values )</i></p>
-<p>
-    <strong>Input: </strong> Two arguments. Both are int
+    <img class="for_info_only" title="oil-pie" src="{{MEDIA}}oil-pie.png" alt="oil-pie" width="600px"/>
+    <img class="for_editor_only" title="oil-pie" src="{{MEDIA}}oil-pie.png" alt="oil-pie" width="380px"/>
 </p>
 
 <p>
-    <strong>Output: </strong> Int. 
+    You should calculate the size as remaining pie as a fraction from the start size.
+    The result should be represented as two numbers - numerator and denominator.
+    Zero should be represented as (0, 1).
 </p>
 
+
+
+<p>
+    <strong>Input: </strong> Sizes of groups as a tuple of integers.
+</p>
+
+<p>
+    <strong>Output: </strong> The remaining of the pie as a list or tuple of two integers.
+</p>
 
 
 <div class="for_info_only">
-    <p><i>( Put some usage examples )</i></p>
     <p>
         <strong>Example:</strong>
     </p>
     <pre class="brush: python">
-checkio(3, 2) == 5
-checkio(5, 7) == 12
+divide_pie((2, -1, 3)) == (1, 18)
+divide_pie((1, 2, 3)) == (0, 1)
     </pre>
 </div>
 
 <p class="for_info_only">
     <strong>How it is used: </strong>
-    <i>(Here you can explain how it can be used in development and what is usage of this.)</i>
+    This mission will familiarize you to operations with fractions.
+    Because we meet fractions constantly in our life.
 </p>
 
 <p>
-    <strong>Precondition:</strong>
-    <i>Constraints for Input</i>
+    <strong>Precondition:</strong><br>
+    all(x for x in groups)<br>
+    all(-100 &lt; x &lt; 100 for x in groups)<br>
 </p>
