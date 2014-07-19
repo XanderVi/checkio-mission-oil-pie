@@ -1,29 +1,30 @@
 <p>
-    Sophia had cooked a pie with oil for her drones and left it in the kitchen.
-    Drones were returning home in small groups or by one and were not seeing each other.
-    Each group did not know how many drones had eaten their parts.
-    Some groups know about the full size of pie take their part from the whole pie,
-    but some groups don't know this and think about the remaining part as about the whole pie,
-    they take their part from the remaining.
+    Sophia had cooked a pie made from oil for her drones and left it in the kitchen.
+    The Drones were returning home in small groups or by themselves and did not see each other upon their return,
+    so each group did not know how many drones had eaten their slice of the pie.
+    Some groups know about how big the pie was after Sophia removed it from the oven,
+    but other groups don't know this and think the remaining part is the entire pie,
+    then take their portion from the remaining.
     So each group had divided (mentally) the remaining or initial pie at all and took their part.
-    How much part will be remained after all drones?
-</p>
-<p>
-    For example. There are 6 drones. The first group is 2 drones. They had divided the pie to 6 parts and took 2/6 of
-    the pie.
-    The remaining pie is 2/3 from the entire pie.
-    Then returned one drone, it don't know about the real pie size.
-    It had divided the remaining at 6 and took 1 part, so the remaining is 10/18=5/9.
-    And the last group is 3 drones, they know about pie.
-    They took a half of the whole pie, so the remaining is 5/9&nbsp;-&nbsp;3/6&nbsp;=1/18
+    How many parts will remain after all of the drones return?
 </p>
 
 <p>
-    You are given an ordered array with sizes of groups which arrived.
-    If a group knows about the initial pie size, then the size is positive. If not, then size will be negative.
-    The recent example will given as (2,&nbsp;-1,&nbsp;3).
+    Let’s take a look at an example of how this should work:
+    There are 6 drones. The first group consists of 2 drones.
+    They had divided the pie into 6 parts and took 2/6 of the pie.
+    The remainder of the pie is 2/3 of the entire pie.
+    Next returns a single drone, it doesn’t know about the original size of the pie,
+    so it divides the remaining pie into 6 slices and takes 1 part.
+    This leaves 10/18=5/9. The last group is 3 drones,
+    which heard about the original size of the pie from Sophia.
+    They took half of the original pie, so the remaining is 5/9&nbsp;-&nbsp;3/6&nbsp;=&nbsp;1/18
 </p>
-
+<p>
+    You are given an ordered array with sizes of the groups in the order they arrived.
+    If a group knows about the initial pie size, then the size is positive.
+    If not, then size will be negative. The recent example will given as (2,&nbsp;-1,&nbsp;3).
+</p>
 <p style="text-align: center;">
     <img class="for_info_only" title="oil-pie" src="{{MEDIA}}oil-pie.png" alt="oil-pie" width="600px"/>
     <img class="for_editor_only" title="oil-pie" src="{{MEDIA}}oil-pie.png" alt="oil-pie" width="380px"/>
@@ -58,8 +59,7 @@ divide_pie((1, 2, 3)) == (0, 1)
 
 <p class="for_info_only">
     <strong>How it is used: </strong>
-    This mission will familiarize you to operations with fractions.
-    Because we meet fractions constantly in our life.
+    This mission will familiarize you with operations involving fractions because we must deal with fractions every day of our lives.
 </p>
 
 <p>
