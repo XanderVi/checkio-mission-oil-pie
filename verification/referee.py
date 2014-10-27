@@ -39,7 +39,9 @@ cover_code = """def cover(f, data):
     res = f(tuple(data))
     if not isinstance(res, (tuple, list)):
         raise TypeError("the result must be a list or a tuple.")
-    return res, str(res)"""
+    print("====================")
+    print(res[0])
+    return res, ("[" + ", ".join('{0:f}'.format(r) for r in res) + "]")"""
 
 def str_results(answer, user_result):
     return answer == user_result[0], user_result[1]
