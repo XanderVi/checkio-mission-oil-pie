@@ -86,7 +86,7 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
 
             if (!result) {
                 $content.find('.call').html('Fail: ' + checkioInputStr);
-                $content.find('.answer').html('Right result:&nbsp;' + JSON.stringify(rightResultShow));
+                $content.find('.answer').html('Right result:&nbsp;' + rightResultShow);
                 $content.find('.answer').addClass('error');
                 $content.find('.output').addClass('error');
                 $content.find('.call').addClass('error');
