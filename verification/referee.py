@@ -35,7 +35,7 @@ from checkio.referees import checkers
 from tests import TESTS
 
 
-cover_code =  """def cover(f, data):
+cover_code = """def cover(f, data):
     res = f(tuple(data))
     if not isinstance(res, (tuple, list)):
         raise TypeError("the result must be a list or a tuple.")

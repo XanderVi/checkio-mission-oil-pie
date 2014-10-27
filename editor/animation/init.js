@@ -73,7 +73,8 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             }
 
             var rightResult = data.ext["answer"];
-            var userResult = data.out;
+            var rightResultShow = data.ext["show_answer"];
+            var userResult = data.out[1];
             var result = data.ext["result"];
             var userResultShow = data.ext["result_addon"];
 
@@ -85,7 +86,7 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
 
             if (!result) {
                 $content.find('.call').html('Fail: ' + checkioInputStr);
-                $content.find('.answer').html('Right result:&nbsp;' + JSON.stringify(rightResult));
+                $content.find('.answer').html('Right result:&nbsp;' + JSON.stringify(rightResultShow));
                 $content.find('.answer').addClass('error');
                 $content.find('.output').addClass('error');
                 $content.find('.call').addClass('error');
