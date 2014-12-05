@@ -42,14 +42,10 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             //YOUR FUNCTION NAME
             var fname = 'divide_pie';
 
-            if (data.ext && data.ext["show"]) {
-                var checkioInputStr = fname + "(" + data.ext["show"] + ")";
-            }
-            else {
-                checkioInputStr = fname + '((2, -1, 3))';
-            }
+            var checkioInput = data.in || [2, -1, 3];
 
-            var checkioInput = data.in;
+            var checkioInputStr = fname + "(" + JSON.stringify(checkioInput).replace("(", "[").replace(")", "]") + ")";
+
 
             var failError = function (dError) {
                 $content.find('.call').html('Fail: ' + checkioInputStr);
