@@ -1,4 +1,4 @@
-//Dont change it
+//Dont change it please
 requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
     function (ext, $, TableComponent) {
 
