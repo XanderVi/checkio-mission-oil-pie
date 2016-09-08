@@ -8,7 +8,7 @@ var assert = require('assert');
 
 if (!global.is_checking) {
     assert.equal(dividePie([2, -1, 3]), [1, 18], "Example");
-    assert.equal(dividePie([1, 2, 3]), [0, 1)], "All know about the pie");
+    assert.equal(dividePie([1, 2, 3]), [0, 1], "All know about the pie");
     assert.equal(dividePie([1, 2, 3]), [0, 1], "One by one");
     assert.equal(dividePie([-1, -1, -1]), [8, 27], "All together");
     console.log("Coding complete? Click 'Check' to review your tests and earn cool rewards!");
