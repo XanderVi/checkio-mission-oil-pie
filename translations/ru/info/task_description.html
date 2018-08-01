@@ -50,13 +50,17 @@
     <p>
         <strong>Примеры:</strong>
     </p>
-    <pre class="brush: python">{% if interpreter.slug == "js-node" %}
+{% if interpreter.slug == "js-node" %}
+<pre class="brush: javascript">
 dividePie([2, -1, 3]) == [1, 18]
 dividePie([1, 2, 3]) == [0, 1]
+</pre>
 {% else %}
+<pre class="brush: python">
 divide_pie((2, -1, 3)) == (1, 18)
 divide_pie((1, 2, 3)) == (0, 1)
-{% endif %}</pre>
+</pre>
+{% endif %}
 </div>
 
 <p class="for_info_only">

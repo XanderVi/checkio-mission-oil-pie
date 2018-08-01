@@ -51,7 +51,7 @@ api.add_listener(
     CheckiOReferee(
         tests=TESTS,
         cover_code={
-            'python-27': cover_code,  # or None
+            'js-node': cover_code,  # or None
             'python-3': cover_code
         },
         checker=str_results,
