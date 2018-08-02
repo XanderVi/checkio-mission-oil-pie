@@ -12,18 +12,15 @@ CheckiOReferee is a base referee for checking you code.
         add_allowed_modules -- additional module which will be allowed for your task.
         add_close_builtins -- some closed builtin words, as example, if you want, you can close "eval"
         remove_allowed_modules -- close standard library modules, as example "math"
-
 checkio.referee.checkers
     checkers.float_comparison -- Checking function fabric for check result with float numbers.
         Syntax: checkers.float_comparison(digits) -- where "digits" is a quantity of significant
             digits after coma.
-
 checkio.referee.cover_codes
     cover_codes.unwrap_args -- Your "input" from test can be given as a list. if you want unwrap this
         before user function calling, then using this function. For example: if your test's input
         is [2, 2] and you use this cover_code, then user function will be called as checkio(2, 2)
     cover_codes.unwrap_kwargs -- the same as unwrap_kwargs, but unwrap dict.
-
 """
 
 from checkio.signals import ON_CONNECT
@@ -34,27 +31,14 @@ from checkio.referees import checkers
 
 from tests import TESTS
 
-
-cover_code = """def cover(f, data):
-    res = f(tuple(data))
-    if not isinstance(res, (tuple, list)):
-        raise TypeError("the result must be a list or a tuple.")
-    print("====================")
-    print(res[0])
-    return res, ("[" + ", ".join('{0:f}'.format(r) for r in res) + "]")"""
-
-def str_results(answer, user_result):
-    return answer == user_result[0], user_result[1]
-
 api.add_listener(
     ON_CONNECT,
     CheckiOReferee(
         tests=TESTS,
         cover_code={
-            'js-node': cover_code,  # or None
-            'python-3': cover_code
+            #'js-node': cover_codes.js_unwrap_args,
+            #'python-3': cover_codes.unwrap_args
         },
-        checker=str_results,
         function_name={
             "python": "divide_pie",
             "js": "dividePie"
